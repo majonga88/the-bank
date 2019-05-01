@@ -15,9 +15,12 @@ public class Application {
 
 	public static void main(String[] args) throws Exception {
 
-		RunScript.execute(DbUtils.getConnection(), new FileReader(args[0]));
-
-		startService();
+		if (args.length != 0) {
+			RunScript.execute(DbUtils.getConnection(), new FileReader(args[0]));
+			startService();
+		} else {
+			System.out.println("Cannot able to start the api \n Please enter the full path of your database schema like data.sql as program argument");
+		}
 	}
 
 	private static void startService() throws Exception {
